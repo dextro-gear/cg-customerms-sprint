@@ -1,5 +1,6 @@
-package com.cg.customerms;
+package com.cg;
 
+import com.cg.CustomermsApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
