@@ -31,7 +31,7 @@ public class CustomerDAOImpl implements ICustomerDAO {
 	@Override
 	public Customer update(Customer customer) {
 		entityManager.merge(customer);
-		return customer;
+		return entityManager.find(Customer.class, customer.getID());
 	}
 
 	@Transactional
@@ -39,7 +39,7 @@ public class CustomerDAOImpl implements ICustomerDAO {
 		Customer customer = entityManager.find(Customer.class, customerID);
 		customer.addToItems(item);
 		entityManager.merge(customer);
-		return customer;
+		return entityManager.find(Customer.class, customer.getID());
 	}
 
 }
