@@ -12,6 +12,7 @@ public class Account {
 	@Id
 	@GeneratedValue
 	private long accountID;
+
 	private double balance;
 	private LocalDateTime created;
 	
@@ -37,6 +38,11 @@ public class Account {
 
 	public Double getBalance() {
 		return balance;
+	}
+
+	@Override
+	public String toString() {
+		return "Account [accountID=" + accountID + ", balance=" + balance + ", created=" + created + "]";
 	}
 
 	public void setBalance(double balance) {
