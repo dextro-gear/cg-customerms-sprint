@@ -1,9 +1,10 @@
 package com.cg.customerms.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.cg.items.entities.Item;
 import org.springframework.stereotype.Repository;
 
 import com.cg.customerms.entities.Customer;
@@ -11,7 +12,7 @@ import com.cg.customerms.entities.Customer;
 @Repository
 public class CustomerDAOImpl implements ICustomerDAO {
 
-	@Autowired
+	@PersistenceContext
 	private EntityManager entityManager;
 	
 	@Transactional
@@ -23,15 +24,22 @@ public class CustomerDAOImpl implements ICustomerDAO {
 
 	@Override
 	public Customer findByID(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.find(Customer.class, id);
 	}
 
 	@Transactional
 	@Override
 	public Customer update(Customer customer) {
-		// TODO Auto-generated method stub
-		return null;
+		entityManager.merge(customer);
+		return customer;
+	}
+
+	@Transactional
+	public Customer addToItems(Item item, long customerID) {
+		Customer customer = entityManager.find(Customer.class, customerID);
+		customer.addToItems(item);
+		entityManager.merge(customer);
+		return customer;
 	}
 
 }
