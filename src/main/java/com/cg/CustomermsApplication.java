@@ -5,7 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.cg.customerms.ui.ConsoleUI;
+import org.springframework.context.annotation.ComponentScan;
 
+@ComponentScan({"com.cg", "com.cg.customerms", "com.cg.items"})
 @SpringBootApplication
 public class CustomermsApplication {
 
