@@ -1,5 +1,7 @@
 package com.cg.customerms.services;
 
+import java.util.Set;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import com.cg.customerms.dao.AccountDAOImpl;
 import com.cg.customerms.dao.CustomerDAOImpl;
 import com.cg.customerms.entities.Account;
 import com.cg.customerms.entities.Customer;
+import com.cg.items.entities.Item;
 
 @Service
 public class CustomerServiceImpl implements ICustomerService {
@@ -21,8 +24,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	
 	@Override
 	public Customer findByID(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return customerDAO.findByID(id);
 	}
 
 	@Transactional
@@ -40,4 +42,13 @@ public class CustomerServiceImpl implements ICustomerService {
 		return customer;
 	}
 
+	@Override
+	public Set<Item> itemsBoughtByCustomer(long customerId){
+		return null;
+	}
+	
+	@Override
+	public Customer addAmount(long customerID, double amount) {
+		return null;
+	}
 }
