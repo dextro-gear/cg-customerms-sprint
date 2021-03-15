@@ -4,10 +4,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import com.cg.customerms.exceptions.NoItemsBoughtException;
 import com.cg.items.entities.Item;
 import org.springframework.stereotype.Repository;
 
 import com.cg.customerms.entities.Customer;
+
+import java.util.Set;
 
 @Repository
 public class CustomerDAOImpl implements ICustomerDAO {
@@ -40,6 +43,12 @@ public class CustomerDAOImpl implements ICustomerDAO {
 		customer.addToItems(item);
 		entityManager.merge(customer);
 		return entityManager.find(Customer.class, customer.getID());
+	}
+
+	public Set<Item> retriveItems(long customerID){
+		Set<Item> boughtItems = entityManager.find(Customer.class, customerID).getBoughtItems();
+		if(boughtItems == null) throw new NoItemsBoughtException("No items have been bought by Customer #" + customerID);
+		else return boughtItems;
 	}
 
 }

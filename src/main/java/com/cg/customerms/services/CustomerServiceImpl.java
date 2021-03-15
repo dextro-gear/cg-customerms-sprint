@@ -42,11 +42,15 @@ public class CustomerServiceImpl implements ICustomerService {
 		return customer;
 	}
 
-	public Customer
+	public Customer updateCustomer(long id, String name){
+		Customer customer = customerDAO.findByID(id);
+		customer.setName(name);
+		return customerDAO.update(customer);
+	}
 
 	@Override
 	public Set<Item> itemsBoughtByCustomer(long customerId){
-		return null;
+		return customerDAO.retriveItems(customerId);
 	}
 	
 	@Override
