@@ -15,7 +15,7 @@ import java.util.Set;
 public class CustomerUtilities {
 
     public CustomerJSON toJSON(Customer customer){
-        return new CustomerJSON(customer.getID(), customer.getName());
+        return new CustomerJSON(customer.getID(), customer.getName(), customer.getAccount());
     }
 
     public BoughtItemsJSON toJSON(Set<Item> boughtItems){
