@@ -55,6 +55,6 @@ public class CustomerServiceImpl implements ICustomerService {
 	
 	@Override
 	public Customer addAmount(long customerID, double amount) {
-		return null;
+		return customerDAO.addAmount(customerID, amount);
 	}
 }

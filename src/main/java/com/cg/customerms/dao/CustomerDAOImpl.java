@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import com.cg.customerms.entities.Account;
 import com.cg.customerms.exceptions.NoItemsBoughtException;
 import com.cg.items.entities.Item;
 import org.springframework.stereotype.Repository;
@@ -51,4 +52,18 @@ public class CustomerDAOImpl implements ICustomerDAO {
 		else return boughtItems;
 	}
 
+	@Transactional
+	public Customer addAmount(long customerId, double amount){
+		Customer customer = entityManager.find(Customer.class, customerId);
+		Account account = customer.getAccount();
+
+		// Update balance and update the DB
+		account.addToBalance(amount);
+		entityManager.merge(account);
+
+		// Update the customer in the DB.
+		entityManager.merge(customer);
+
+		return entityManager.find(Customer.class, customerId);
+	}
 }
