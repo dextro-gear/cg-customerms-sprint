@@ -1,20 +1,20 @@
 package com.cg.customerms.dto;
 
 public class UpdateCustomerRequest {
-    long customerID;
+    int id;
     String name;
 
-    public UpdateCustomerRequest(long customerID, String name) {
-        this.customerID = customerID;
+    public UpdateCustomerRequest(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 
-    public long getCustomerID() {
-        return customerID;
+    public int getId() {
+        return id;
     }
 
-    public void setCustomerID(long customerID) {
-        this.customerID = customerID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
