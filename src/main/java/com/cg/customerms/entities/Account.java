@@ -56,6 +56,9 @@ public class Account {
 	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
-	
+
+	public void addToBalance(double amount){
+		this.balance += amount;
+	}
 	
 }
